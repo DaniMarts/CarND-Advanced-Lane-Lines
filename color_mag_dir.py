@@ -1,3 +1,8 @@
+"""
+A program to assist with tuning the color, magnitude and gradient threshold filter parameters.
+Trackbars are used to visually tune the parameters of the filters using test images.
+"""
+
 import cv2
 import numpy as np
 from glob import glob
