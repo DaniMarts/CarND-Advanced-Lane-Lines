@@ -1,12 +1,13 @@
 # Advanced Lane Finding
-
-<img src="test_videos/project_video.gif" width=430/>
-<img src="output_videos/project_video_result.gif" width=430/> 
+<p>
+    <img src="test_videos/project_video.gif" width=420 title="Input video stream"/>
+    <img src="output_videos/project_video_result.gif" width=420 title="Output video stream"/>
+</p>
 
 
 ## Objective
 The primary objective of this project is to design and implement a software pipeline capable of accurately identifying lane boundaries within a video stream.
-The gif on the left is an example of the input video stream, while the gif on the right is the output of the software pipeline.
+The first gif is an example of the input video stream, while the second gif is the output of the software pipeline.
 
 ## Key technologies
 The pipeline is implemented in Python 3.7, using Jupyter Notebook as the development environment. <br>
@@ -86,8 +87,8 @@ The pipeline was applied to each frame of the input video stream. The following 
 Apart from the gif at the beginning of this README, a more challenging video was also processed, as seen in the gifs below:
 
 <p>
-    <img src="test_videos/challenge_video.gif" width=430 title="Harder challenge video input" />
-    <img src="output_videos/challenge_video_result.gif" width=430 title="Harder challenge video result" />
+    <img src="test_videos/challenge_video.gif" width=420 title="Challenge video input" />
+    <img src="output_videos/challenge_video_result.gif" width=420 title="Challenge video result" />
     <br><em>Fig.12 - Challenge video input (left) and result (right).</em>
 </p>
 
