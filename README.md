@@ -1,35 +1,96 @@
-## Advanced Lane Finding
-<p float="right">
+# Advanced Lane Finding
 
-<img src="test_videos/Project video.gif" />
+<img src="test_videos/project_video.gif" width=430/>
 <img src="output_videos/project_video_result.gif" width=430/> 
 
-</p>
+<br>
 
-In this project, my goal is to write a software pipeline to identify the lane boundaries in a video.
+## Objective
+The primary objective of this project is to design and implement a software pipeline capable of accurately identifying lane boundaries within a video stream.
+The gif on the left is an example of the input video stream, while the gif on the right is the output of the software pipeline.
 
-The Project
+## Key technologies
+The pipeline is implemented in Python 3.7, using Jupyter Notebook as the development environment. <br>
+
+The key libraries used in this project are:
+* **OpenCV** - for image processing (e.g. color filtering, gradient filtering, perspective transformation, etc.)
+* **Numpy** - for numerical operations (e.g. matrix operations, etc.)
+* **Matplotlib** - for plotting and visualization
+* **MoviePy** - for video processing
+
+## Pipeline steps
 ---
 
-The goals / steps of this project are the following:
+The pipeline was applied to each frame of the input video stream. The following steps were performed on each frame:
 
-* Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.
-* Apply a distortion correction to raw images.
-* Use color transforms, gradients, etc., to create a thresholded binary image.
-* Apply a perspective transform to rectify binary image ("birds-eye view").
-* Detect lane pixels and fit to find the lane boundary.
-* Determine the curvature of the lane and vehicle position with respect to center.
-* Warp the detected lane boundaries back onto the original image.
-* Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.
+<ol>
+    <h3><li>Compute the camera calibration matrix and distortion coefficients given a set of chessboard images.</h3>
+        <figure>
+            <img src="output_images/0_calibrate_chess/undistorted5.png" width=800 title="Transformation from distorted (left) to undistorted chessboard image (right) after correcting for distortion."/>
+            <figcaption>Fig.1 - Transformation from distorted (left) to undistorted chessboard image (right) after correcting for distortion.</figcaption>
+        </figure>
+    </li>
+    <h3><li>Apply a distortion correction to raw images.</h3>
+        <figure>
+            <img src="output_images/1_Undistorted_images/Transformation.png" width=900 title="Transformation from distorted to undistorted image"/>
+            <figcaption>Fig.2 - Transformation from distorted (left) to undistorted image (right). <br>Hint: look at how the front of the car is now different.</figcaption>
+        </figure>
+    </li>
+    <h3><li>Use color transforms, gradients, etc., to create a thresholded binary image.</h3>
+        <figure>
+            <img src="output_images/3_Magnitude_thresholded_images/Magnitude_thresholded8.jpg" width=430 title="An image where the hightlighted pixels are parts of the grayscaled image where the change in brightness (gradient magnitude) is above a certain threshold."/>
+            <figcaption>Fig.3 - An image where the hightlighted pixels are parts of the grayscaled image where the change in brightness (gradient magnitude) is above a certain threshold.</figcaption>
+        </figure>
+        <figure>
+            <img src="output_images/4_Direction_thresholded_images/Direction_thresholded8.jpg" width=430 title="An image where the hightlighted pixels are parts of the grayscaled image where the direction of highest change in brightness (direction of the gradient) is within the desired threshold to match lane lines."/>
+            <figcaption>Fig.4 - An image where the hightlighted pixels are parts of the grayscaled image where the direction of highest change in brightness (direction of the gradient) is within the desired threshold to match lane lines.</figcaption>
+        </figure>
+        <figure>
+            <img src="output_images/5_Magnitude_and_direction_thresholded_images/Magnitude_and_direction_thresholded8.jpg" width=430 title="An image where the hightlighted pixels are parts of the image where the gradient magnitude is above a certain threshold, and the gradient direction is within a desired threshold to match lane lines."/>
+            <figcaption>Fig.5 - An image where the hightlighted pixels are parts of the image where the gradient magnitude is above a certain threshold, AND the gradient direction is within a desired threshold to match lane lines.</figcaption>
+        </figure>
+        <figure>
+            <img src="output_images/6_Color_and_Magnitude_and_direction_thresholded_images/Color_and_Magnitude_and_direction_thresholded8.jpg" width=430 title="An image where the color filtering for yellow and white (both lane line colors) was applied (result in red pixels), and combined with a desired gradient (pixels in green). Yellow parts are where both filters agreed."/>
+            <figcaption>Fig.6 - An image where the color filtering for yellow and white (both lane line colors) was applied (result in red pixels), and combined with a desired gradient (pixels in green). Yellow parts are where both filters agreed.</figcaption>
+        </figure>
+    </li>
+    <h3><li>Apply a perspective transform to rectify binary image ("birds-eye view").</h3>
+        <figure>
+            <img src="output_images/7_Pre-perspective_transform_images/output3.png" width=430 title="The lane lines with green dots on each corner must land where the yellow dots are to form the birds-eye view. This image will be used to get such transformation matrix."/>
+            <figcaption>Fig.7 - The lane lines with green dots on each corner must land where the yellow dots are to form the birds-eye view. This image will be used to get such transformation matrix.</figcaption>
+        </figure>
+        <figure>
+            <img src="output_images/8_Perspective_transformed_images/output2.png" width=800 title="Top view of the road. Left: original image. Center: color and gradient filter. Right: Only color filter."/>
+            <figcaption>Fig.8 - Top view of the road. Left: original image. Center: color and gradient filter. Right: Only color filter.</figcaption>
+        </figure>
+    </li>
+    <h3><li>Detect lane pixels and fit to find the lane boundary.</h3>
+        <figure>
+            <img src="output_images/9_histogram/output.png" width=430 title="Histogram of the bottom half of the image, obtained by summing the number of pixels on each column of the binary image. The peaks are the most likely positions of the lane lines."/>
+            <figcaption>Fig.9 - Histogram of the bottom half of the image. The peaks are the most likely positions of the lane lines.</figcaption>
+        </figure>
+        <figure>
+            <img src="output_images/10_Lane_fitted_warped_images/Lane_fitted2.jpg" width=430 title="The lane lines are highlighted in red (left line) and blue (right line), with the lane itself in green. The estimate of the radius of curve and direction of the center of curvature is also shown."/>
+            <figcaption>Fig.10 - The lane lines are highlighted in red (left line) and blue (right line), with the lane itself in green. The estimate of the radius of curve and direction of the center of curvature is also shown.</figcaption>
+        </figure>
+    </li>
+    <h3><li>Warp the detected lane boundaries back onto the original image.</h3>
+        <figure>
+            <img src="output_images/11_Identified_lanes/Identified_lane2.jpg" width=430 title="Detected lane and its lines projected on the original undistorted image. The lane lines are highlighted in red (left line) and blue (right line), with the lane itself in green. The estimate of the radius of curve and direction of the center of curvature is also shown."/>
+            <figcaption>Fig.11 - Detected lane and its lines projected on the original undistorted image. The lane lines are highlighted in red (left line) and blue (right line), with the lane itself in green. The estimate of the radius of curve and direction of the center of curvature is also shown.</figcaption>
+        </figure>
+    </li>
+    <!-- <h3><li>Output visual display of the lane boundaries and numerical estimation of lane curvature and vehicle position.</h3></li> -->
+</ol>
 
-The images for camera calibration are stored in the folder called `camera_cal`.  The images in `test_images` are for testing your pipeline on single frames.  If you want to extract more test images from the videos, you can simply use an image writing method like `cv2.imwrite()`, i.e., you can read the video in frame by frame as usual, and for frames you want to save for later you can write to an image file.  
+## Results
+Apart from the gif at the beginning of this README, a more challenging video was also processed, as seen in the gifs below:
 
-To help the reviewer examine your work, please save examples of the output from each stage of your pipeline in the folder called `output_images`, and include a description in your writeup for the project of what each image shows.    The video called `project_video.mp4` is the video your pipeline should work well on.  
+<figure>
+    <img src="test_videos/challenge_video.gif" width=430 title="Harder challenge video input" />
+    <img src="output_videos/challenge_video_result.gif" width=430 title="Harder challenge video result" />
+    <figcaption>Fig.12 - Harder challenge video input (left) and result (right).</figcaption>
+</figure>
 
-The `challenge_video.mp4` video is an extra (and optional) challenge for you if you want to test your pipeline under somewhat trickier conditions.  The `harder_challenge.mp4` video is another optional challenge and is brutal!
-
-If you're feeling ambitious (again, totally optional though), don't stop there!  We encourage you to go out and take video of your own, calibrate your camera and show us how you would implement this project from scratch!
-
-## How to write a README
-A well written README file can enhance your project and portfolio.  Develop your abilities to create professional README files by completing [this free course](https://www.udacity.com/course/writing-readmes--ud777).
-
+## Discussion and future improvements
+The pipeline was able to successfully identify the lane boundaries in the input video stream. However, there are still some limitations to the current implementation. For example, the pipeline may not work well under different lighting conditions, or when the road has a lot of shadows, as it was observed on the more challenging video above. The pipeline may also fail when there are other objects on the road that are similar in color to the lane lines. Future work could focus on improving the robustness of the pipeline under different conditions, and making it more efficient.
