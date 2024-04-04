@@ -3,7 +3,6 @@
 <img src="test_videos/project_video.gif" width=430/>
 <img src="output_videos/project_video_result.gif" width=430/> 
 
-<br>
 
 ## Objective
 The primary objective of this project is to design and implement a software pipeline capable of accurately identifying lane boundaries within a video stream.
@@ -89,7 +88,7 @@ Apart from the gif at the beginning of this README, a more challenging video was
 <p>
     <img src="test_videos/challenge_video.gif" width=430 title="Harder challenge video input" />
     <img src="output_videos/challenge_video_result.gif" width=430 title="Harder challenge video result" />
-    <br><em>Fig.12 - Harder challenge video input (left) and result (right).</em>
+    <br><em>Fig.12 - Challenge video input (left) and result (right).</em>
 </p>
 
 ## Discussion and future improvements
