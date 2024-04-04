@@ -1,7 +1,7 @@
 # Advanced Lane Finding
 <p>
-    <img style="float: left; padding-right: 10px; padding-bottom: 10px;" src="test_videos/project_video.gif" width=420 title="Input video stream"/>
-    <img src="output_videos/project_video_result.gif" width=420 title="Output video stream"/>
+    <img style="float: left; padding-right: 10px; padding-bottom: 10px;" src="test_videos/project_video.gif" width=410 title="Input video stream"/>
+    <img src="output_videos/project_video_result.gif" width=410 title="Output video stream"/>
 </p>
 
 
@@ -87,8 +87,8 @@ The pipeline was applied to each frame of the input video stream. The following 
 Apart from the gif at the beginning of this README, a more challenging video was also processed, as seen in the gifs below:
 
 <p>
-    <img style="float: left; padding-right: 10px; padding-bottom: 10px;" src="test_videos/challenge_video.gif" width=420 title="Challenge video input" />
-    <img src="output_videos/challenge_video_result.gif" width=420 title="Challenge video result" />
+    <img style="float: left; padding-right: 10px; padding-bottom: 10px;" src="test_videos/challenge_video.gif" width=410 title="Challenge video input" />
+    <img src="output_videos/challenge_video_result.gif" width=410 title="Challenge video result" />
     <br><em>Fig.12 - Challenge video input (first) and result (second).</em>
 </p>
 
